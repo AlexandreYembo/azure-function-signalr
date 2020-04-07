@@ -67,5 +67,17 @@ namespace ServerlessPoc.Tests
 
             Assert.IsInstanceOf<NoContentResult>(result);
         }
+
+        [Test]
+        public void Should_Return_Connection_From_SignalR()
+        {
+            var request = TestFactory.CreateHttpRequest("name", "value");
+
+            var connection = new SignalRConnectionInfo();
+
+            var result = ServerlessPoc.Function.Negotiate.NegotiateFunc(request, connection);
+
+            Assert.IsInstanceOf<SignalRConnectionInfo>(result);
+        }
     }
 }

@@ -25,7 +25,8 @@ namespace ServerlessPoc.Tests
                 Type = "vote",
                 User = "Test User",
                 Candidate = "jair",
-                Message = "Hello World"
+                Message = "Hello World",
+                Votes = new List<Function.Model.Vote> { }
             };
         }
     }
