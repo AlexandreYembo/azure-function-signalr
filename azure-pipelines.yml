@@ -13,9 +13,9 @@ steps:
   - task: DotNetCoreCLI@2
     displayName: "dotnet test"
     inputs:
-      command: test
-      projects: "/home/vsts/work/1/s/cicd-pipeline-test/cicd-pipeline-test.csproj"
-      arguments: "--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
+      command: 'test'
+      projects: '/home/vsts/work/1/s/ServerlessPoc.Tests/ServerlessPoc.Tests.csproj'
+      arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
       publishTestResults: true
 
   - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
