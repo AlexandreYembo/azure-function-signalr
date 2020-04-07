@@ -16,6 +16,7 @@ steps:
       command: 'test'
       projects: '/home/vsts/work/1/s/ServerlessPoc.Tests/ServerlessPoc.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+      publishTestResults: true
 
   - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
     displayName: ReportGenerator
