@@ -14,7 +14,7 @@ steps:
     displayName: "dotnet test"
     inputs:
       command: 'test'
-      projects: '/home/vsts/work/1/s/ServerlessPoc.Tests/ServerlessPoc.Tests.csproj'
+      projects: '**/*Tests.csproj'
       arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
       publishTestResults: true
 
@@ -37,14 +37,15 @@ steps:
       reportDirectory: "$(Build.SourcesDirectory)/CodeCoverage"
 
   - task: DotNetCoreCLI@2
-    displayName: "dotnet publish"
+    displayName: Publish
     inputs:
       command: publish
-      publishWebProjects: true
-      arguments: "--configuration $(BuildConfiguration) --output $(Build.StagingDirectory)"
-      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: True
 
   - task: PublishBuildArtifacts@1
-    displayName: "Publish Artifact: $(Build.BuildId).zip"
+    displayName: 'Publish Artifact'
     inputs:
-      ArtifactName: "$(Build.BuildId).zip"
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
